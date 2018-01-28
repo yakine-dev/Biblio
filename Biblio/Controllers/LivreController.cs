@@ -16,5 +16,15 @@ namespace Biblio.Controllers
 
             return View(livre);
         }
+
+
+        
+        public ActionResult ParDate(int mois,int annee,string nomLivre)
+        {
+            return Content(mois + "-"+annee+"-"+nomLivre );
+        }
+
+        
+
     }
 }
