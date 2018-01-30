@@ -7,33 +7,24 @@ using Biblio.Models;
 
 namespace Biblio.Controllers
 {
-    public class LivreController : Controller
+    public class ClientController : Controller
     {
-
-        
-        
+        // GET: biblio.com/Client/
+        // GET: biblio.com/Client/Index
         public ActionResult Index()
         {
-            var livres = new List<Livre>();
+            var clients = new List<Client>();
             for (int i = 1; i < 11; i++)
             {
-                var livre = new Livre()
+                var client = new Client()
                 {
                     Id =i,
-                    Titre = "Livre "+i,
-                    Page = i*100,
+                    Nom = "Client "+i,
+                    Prenom = "Prenom "+i,
                 };
-                livres.Add(livre);
+                clients.Add(client);
             }
-
-            return View(livres);
+            return View(clients);
         }
-
-
-        
-        
-
-        
-
     }
 }

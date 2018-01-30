@@ -1,0 +1,34 @@
+﻿@model List<Biblio.Models.Client>
+@{
+    ViewBag.Title = "liste de client";
+}
+
+<h1>Liste Client</h1>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th>Nom Client</th>
+        <th>prenom Client</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model.Count>0)
+    {
+        foreach (var client in Model)
+         {
+             <tr>
+                 <td>@client.Nom</td>
+                 <td>@client.Prenom</td>
+             </tr>
+         }
+    }
+    else
+    {
+        <tr><td colspan="2" class="text-center">Pas de client dans la base de donne</td></tr>
+    }
+    
+    
+    </tbody>
+</table>
+
