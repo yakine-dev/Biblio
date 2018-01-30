@@ -10,5 +10,7 @@ namespace Biblio.Models
         public int Id { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
+        public Plan Plan { get; set; }
+        public int PlanId { get; set; }
     }
 }
