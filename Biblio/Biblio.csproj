@@ -223,10 +223,15 @@
     <Compile Include="Migrations\201801310047578_table_client_supression_prenom.Designer.cs">
       <DependentUpon>201801310047578_table_client_supression_prenom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802062340440_table_client_nom_notnull.cs" />
+    <Compile Include="Migrations\201802062340440_table_client_nom_notnull.Designer.cs">
+      <DependentUpon>201802062340440_table_client_nom_notnull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\ClientFormViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Livre.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -340,6 +345,7 @@
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Livre\Index.cshtml" />
     <Content Include="Views\Client\Detail.cshtml" />
+    <Content Include="Views\Client\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -370,6 +376,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801310047578_table_client_supression_prenom.resx">
       <DependentUpon>201801310047578_table_client_supression_prenom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802062340440_table_client_nom_notnull.resx">
+      <DependentUpon>201802062340440_table_client_nom_notnull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

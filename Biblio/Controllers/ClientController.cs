@@ -20,6 +20,36 @@ namespace Biblio.Controllers
             return View(clients);
         }
 
+        public ActionResult Add()
+        {
+            var db = new ApplicationDbContext();
+            var viewModel = new ClientFormViewModel()
+            {
+                Client = new Client(),
+                Plans = db.Plans.ToList()
+            };
+
+            return View(viewModel);
+        }
+        [HttpPost]
+        public ActionResult Save(Client client)
+        {
+            var db = new ApplicationDbContext();
+
+            if (db.Clients.SingleOrDefault(c => c.Nom == client.Nom) != null)
+            {
+                var viewModel = new ClientFormViewModel()
+                {
+                    Client = new Client(),
+                    Plans = db.Plans.ToList()
+                };
+                return View("Add",viewModel);
+            }
+            db.Clients.Add(client);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
         public ActionResult Detail(int id)
         {
             var db = new ApplicationDbContext();
