@@ -5,12 +5,17 @@
 
 <h1>Liste Client</h1>
 
+<p>
+    @Html.ActionLink("Ajouter Client","Add",new{},new{@class="btn btn-primary"})
+</p>
+
 <table class="table table-striped">
     <thead class="thead-dark">
     <tr>
         <th>Id</th>
         <th>Nom Client</th>
-        <th>Plan</th>       
+        <th>Plan</th> 
+        <th></th>  
     </tr>
     </thead>
     <tbody>
@@ -22,6 +27,7 @@
                  <td>@client.Id</td>
                  <td>@Html.ActionLink(client.Nom,"Detail","Client",new{id=client.Id},new{})</td>
                  <td>@client.Plan.Nom</td>
+                 <td>@Html.ActionLink("Modifier", "Edit", "Client", new { id = client.Id }, new {@class="btn btn-warning"})</td>
              </tr>
         }
     }

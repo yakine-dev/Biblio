@@ -13,10 +13,12 @@ namespace Biblio.Models
         public int Id { get; set; }
 
         [DisplayName("Nom Client")]
-        [Required]
+        [Required(ErrorMessage = "Le Nom est requis")]
+        [UniqueName]
         public string Nom { get; set; }        
 
-        [DisplayName("Plan")]
+        [DisplayName("Plan")]        
+        [Required(ErrorMessage = "Le Plan est requis")]
         public int PlanId { get; set; }
 
         public Plan Plan { get; set; }

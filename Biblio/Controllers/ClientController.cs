@@ -29,23 +29,72 @@ namespace Biblio.Controllers
                 Plans = db.Plans.ToList()
             };
 
-            return View(viewModel);
+            return View("ClientForm",viewModel);
         }
+
+        public ActionResult Edit(int id)
+        {
+            var db = new ApplicationDbContext();
+            var client = db.Clients.SingleOrDefault(c => c.Id == id);
+            if (client == null)
+            {
+                return HttpNotFound();
+            }
+            var viewModel = new ClientFormViewModel()
+            {
+                Client = client,
+                Plans = db.Plans.ToList()
+            };
+            return View("ClientForm", viewModel);
+
+        }
+
         [HttpPost]
         public ActionResult Save(Client client)
         {
             var db = new ApplicationDbContext();
-
-            if (db.Clients.SingleOrDefault(c => c.Nom == client.Nom) != null)
+            if (!ModelState.IsValid)
             {
                 var viewModel = new ClientFormViewModel()
                 {
-                    Client = new Client(),
+                    Client = client,
                     Plans = db.Plans.ToList()
                 };
-                return View("Add",viewModel);
+                return View("ClientForm", viewModel);
             }
-            db.Clients.Add(client);
+            if (client.Id==0)
+            {
+                if (db.Clients.SingleOrDefault(c => c.Nom == client.Nom) != null)
+                {
+                    var viewModel = new ClientFormViewModel()
+                    {
+                        Client = new Client(),
+                        Plans = db.Plans.ToList()
+                    };
+                    return View("ClientForm", viewModel);
+                }
+                db.Clients.Add(client);
+            }
+            else
+            {
+                var clientDb = db.Clients.SingleOrDefault(c => c.Id == client.Id);
+                if (clientDb==null)
+                {
+                    return HttpNotFound();
+                }
+                if (db.Clients.SingleOrDefault(c => c.Id != client.Id && c.Nom==client.Nom)!=null)
+                {
+                    var viewModel = new ClientFormViewModel()
+                    {
+                        Client = client,
+                        Plans = db.Plans.ToList()
+                    };
+                    return View("ClientForm", viewModel);
+                }
+                clientDb.Nom = client.Nom;
+                clientDb.PlanId = client.PlanId;
+            }
+            
             db.SaveChanges();
 
             return RedirectToAction("Index");
